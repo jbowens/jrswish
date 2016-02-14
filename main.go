@@ -77,10 +77,13 @@ func retrieveCavsGame(t time.Time) (*data.Game, error) {
 			game = g
 		}
 	}
-	if game.Status == data.Live {
-		return game, nil
+	if game == nil {
+		return nil, nil
 	}
-	return nil, nil
+	if game.Status != data.Live {
+		return nil, nil
+	}
+	return game, nil
 }
 
 func main() {
